@@ -5,6 +5,7 @@ const parse5 = require('parse5');
 const path = require('path');
 const child = require('./compiler');
 const crypto = require('crypto');
+const fs = require('fs');
 const Oracle = require('./oracle');
 
 const faviconCompilations = new WeakMap();
@@ -95,6 +96,11 @@ class FaviconsWebpackPlugin {
                 attributes: attrs.reduce((obj, { name, value }) => Object.assign(obj, { [name]: value }), {}),
               })),
             );
+
+            if (!fs.existsSync(this.options.path)) {
+              fs.mkdirSync(this.options.path);
+            }
+            fs.writeFileSync(path.join(this.options.path, this.options.filename), JSON.stringify(tags));
 
             htmlWebpackPluginCallback(null, htmlPluginData);
           }).catch(htmlWebpackPluginCallback);

@@ -5,7 +5,12 @@ export interface FaviconWebpackPlugionOptions {
    * Enable caching and optionally specify the path to store cached data
    *  Note: disabling caching may increase build times considerably
    */
-  cache?: boolean, 
+  cache?: boolean,
+
+  /**
+   * data write path
+   */
+  output?:string,
   /**
    * 
    * Inject html links/metadata (requires html-webpack-plugin).
