@@ -5,7 +5,7 @@ const FaviconsWebpackPlugin = require('../');
 
 const { empty, invalid, generate, mkdir } = require('./util');
 
-test.beforeEach(async t => t.context.root = await mkdir());
+test.beforeEach(async t => (t.context.root = await mkdir()));
 
 test('should fail gracefully if path to logo is wrong', async t => {
   const dist = path.join(t.context.root, 'dist');
@@ -15,7 +15,7 @@ test('should fail gracefully if path to logo is wrong', async t => {
     await generate({
       context: t.context.root,
       output: {
-        path: dist,
+        path: dist
       },
       plugins: [new FaviconsWebpackPlugin({ logo })]
     });
@@ -30,7 +30,7 @@ test('should fail gracefully if the image stream is empty', async t => {
     await generate({
       context: t.context.root,
       output: {
-        path: dist,
+        path: dist
       },
       plugins: [new FaviconsWebpackPlugin({ logo: empty })]
     });
@@ -45,7 +45,7 @@ test('should fail gracefully if logo is not a valid image file', async t => {
     await generate({
       context: t.context.root,
       output: {
-        path: dist,
+        path: dist
       },
       plugins: [new FaviconsWebpackPlugin({ logo: invalid })]
     });

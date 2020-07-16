@@ -6,7 +6,7 @@ const FaviconsWebpackPlugin = require('../');
 
 const { logo, mkdir, generate } = require('./util');
 
-test.beforeEach(async t => t.context.root = await mkdir());
+test.beforeEach(async t => (t.context.root = await mkdir()));
 
 test('should cache assets', async t => {
   const plugin = new FaviconsWebpackPlugin({ logo });
@@ -16,14 +16,14 @@ test('should cache assets', async t => {
   await generate({
     context: t.context.root,
     output: {
-      path: path.join(t.context.root, 'dist'),
+      path: path.join(t.context.root, 'dist')
     },
-    plugins: [plugin],
+    plugins: [plugin]
   });
 
   const cache = findCacheDir({
     name: 'favicons-webpack-plugin',
-    cwd: t.context.root,
+    cwd: t.context.root
   });
 
   t.truthy(fs.existsSync(cache));
